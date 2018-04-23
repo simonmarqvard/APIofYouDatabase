@@ -54,4 +54,296 @@ h1 {
     padding: 8px 16px;
     margin: 0 6px;
 }
+.myclass {
+  background-color: red;
+}
 
+
+/* My css from midterm */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+/* This is where chart size is determined */
+#chart-container {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#container {
+  background-color: white;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0px 32px;
+}
+
+#title {
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-size: 27px;
+  text-align: center;
+  padding-top: 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: black;
+  font-family: 'PT Sans', sans-serif;
+  letter-spacing: 6px;
+}
+
+#titleinfo {
+  width: 100%;
+  height: 50px;
+  color: #00AAA9;
+  font-size: 14px;
+  text-align: center;
+  padding-top: 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: black;
+  font-family: 'PT Sans', sans-serif;
+  letter-spacing: 6px;
+}
+
+#titleinfo2 {
+  width: 100%;
+  height: 50px;
+  color: #FF7A5A;
+  font-size: 14px;
+  text-align: center;
+  padding-top: 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: black;
+  font-family: 'PT Sans', sans-serif;
+  letter-spacing: 6px;
+}
+
+
+
+.days {
+ /* background-color: red; */
+ width: 100%;
+ display: flex;
+ flex-direction: row;
+}
+
+.dayColumn {
+  border-radius: 5px;
+  background-color: lightgrey;
+  height: 100%;
+  width: 14%;
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dayColumn:hover {
+  border-radius: 5px;
+  background-color: #FCF4D9;
+  color: black;
+  height: 100%;
+  width: 14%;
+  box-sizing: border-box;
+  /* border: 1px dotted black; */
+  margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fasted {
+  /* background-color: orange; */
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  height: 150px;
+  width: 100%;
+  margin-top: 30px;
+  position: relative;
+}
+
+.prelunch {
+  /* background-color: orange; */
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  height: 150px;
+  width: 100%;
+  margin-top: 100px;
+  position: relative;
+}
+
+.postlunch {
+  /* background-color: orange; */
+  /* box-sizing: border-box; */
+  /* border: 1px solid black; */
+  height: 150px;
+  width: 100%;
+  margin-top: 30px;
+  position: relative;
+}
+
+.bedtime {
+  /* background-color: orange; */
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  height: 150px;
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.myChart canvas {
+  height: 50%;
+}
+
+.description {
+  font-family: 'Oxygen', sans-serif;
+  color: #f7e3a1;
+  /* background-color: purple; */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.description:hover {
+  color: black;
+}
+
+
+
+.insideNO {
+  text-align: center;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 83px;
+  left: 40px;
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-family: 'Oxygen', sans-serif;
+  line-height: 17px;
+}
+
+.insideNO span {
+  font-size: 9px;
+  font-family: 'Oxygen', sans-serif;
+
+}
+
+
+.refdescriptionSmall {
+  font-family: 'PT Sans', sans-serif;
+  /* background-color: purple; */
+  /* text-align: center; */
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  height: 10px;
+  width: 100%;
+  margin-top: 0px;
+  padding-left: 33px;
+  position: relative;
+}
+
+
+.refslots {
+    /* background-color: green; */
+    box-sizing: border-box;
+    /* border: 1px solid black; */
+    height: 150px;
+    width: 100%;
+    margin-top: 30px;
+    position: relative;
+}
+
+.refslots2 {
+  /* background-color: green; */
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  height: 150px;
+  width: 100%;
+  margin-top: 100px;
+  position: relative;
+}
+
+.refDayColumn {
+  /* background-color: blue; */
+  height: 100%;
+  width: 14%;
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.refdescription {
+  padding-top: 50%;
+  font-family: 'PT Sans', sans-serif;
+  /* background-color: purple; */
+  /* text-align: center; */
+  margin-bottom: 20px;
+  padding-left: 33px;
+}
+
+.datebox {
+  background: black;
+  font-family: 'Oxygen', sans-serif;
+  width: 72%;
+  border-radius: 5px;
+  height: 38px;
+  padding-top: 13px;
+  margin-top: 28px;
+  margin-bottom: 30px;
+  color: white;
+  padding-left: 35px;
+  padding-right: 8px;
+}
+
+
+.inputBox {
+  width: 100px;
+  height: 50px;
+  background-color: black;
+  border-radius: 10px;
+  position: fixed;
+  z-index: 5;
+}
+
+.glucoseSchema {
+  visibility: hidden;
+}
+
+
+#form {
+  width: 100%;
+  background-color: red;
+}
+
+.form-group {
+  background-color: purple;
+  text-align: center
+}
+
+.form-control {
+  width: 100px;
+  margin: 0;
+  margin: 0 auto;
+}
+
+.menu {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  width: 100px;
+  height: 50px;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 10;
+}

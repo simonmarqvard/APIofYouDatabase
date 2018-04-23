@@ -3,23 +3,22 @@ var Schema = mongoose.Schema;
 
 // See http://mongoosejs.com/docs/schematypes.html
 
-var animalSchema = new Schema({
-	name: String,
-	// name: {type: String, required: true}, // this version requires this field to exist
-	// name: {type: String, unique: true}, // this version requires this field to be unique in the db
-	age: Number,
-	tags: [String],
-	description: {
-		weight: Number,
-		color: String
-	},
-	url: String,
-	location: {
-		geo: { type: [Number], index: { type: '2dsphere', sparse: true } },
-		name: String
-	},
-	dateAdded : { type: Date, default: Date.now },
+
+//define variables you want to include in datasetup
+//structure of model is defined in route.post (routes.index.js)
+var glucoseMeasurements = new Schema({
+  name: String,
+  type: String,
+  state: [],
+  sampleTime: String,
+  measurement: String,
+  dateAdded: {
+    type: Date,
+    default: Date.now
+  },
 })
 
-// export 'Animal' model so we can interact with it in other files
-module.exports = mongoose.model('Animal',animalSchema);
+
+
+// export Glucose (which references the structure of glucosemeasurements) model so we can interact with it in other files
+module.exports = mongoose.model('Glucose', glucoseMeasurements);
