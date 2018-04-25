@@ -74,10 +74,11 @@ html, body {
 }
 
 #container {
-  background-color: white;
-    max-width: 1140px;
-    margin: 0 auto;
+  /* background-color: blue; */
+    margin: 0 0 0 300px;
     padding: 0px 32px;
+    display: inline-block;
+
 }
 
 #title {
@@ -126,16 +127,16 @@ html, body {
 
 .days {
  /* background-color: red; */
- width: 100%;
  display: flex;
  flex-direction: row;
 }
 
+
 .dayColumn {
   border-radius: 5px;
-  background-color: lightgrey;
+  background-color: #FCF4D9;
   height: 100%;
-  width: 14%;
+  width: 150px;
   box-sizing: border-box;
   /* border: 1px solid black; */
   margin-right: 25px;
@@ -145,15 +146,16 @@ html, body {
 
 .dayColumn:hover {
   border-radius: 5px;
-  background-color: #FCF4D9;
+  /* background-color: black; */
   color: black;
   height: 100%;
-  width: 14%;
+  width: 150px;
   box-sizing: border-box;
   /* border: 1px dotted black; */
   margin-right: 25px;
   display: flex;
   flex-direction: column;
+  /* box-shadow: inset 0px 0px 0 2000px rgba(0,0,0,0.5); */
 }
 
 .fasted {
@@ -291,15 +293,15 @@ html, body {
 .datebox {
   background: black;
   font-family: 'Oxygen', sans-serif;
-  width: 72%;
+  width: 100%;
   border-radius: 5px;
   height: 38px;
-  padding-top: 13px;
+  padding-top: 9px;
   margin-top: 28px;
   margin-bottom: 30px;
   color: white;
-  padding-left: 35px;
-  padding-right: 8px;
+  padding-left: 40px;
+  padding-right: 0px;
 }
 
 
@@ -307,9 +309,12 @@ html, body {
   width: 100px;
   height: 50px;
   background-color: black;
-  border-radius: 10px;
+  color: white;
+  /* border-radius: 10px; */
   position: fixed;
   z-index: 5;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 14px;
 }
 
 .glucoseSchema {
@@ -319,12 +324,14 @@ html, body {
 
 #form {
   width: 100%;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .form-group {
-  background-color: purple;
-  text-align: center
+  /* background-color: */
+  text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 
 .form-control {
@@ -333,8 +340,10 @@ html, body {
   margin: 0 auto;
 }
 
+
 .menu {
   background-color: #4CAF50; /* Green */
+
   border: none;
   color: white;
   width: 100px;
@@ -346,4 +355,77 @@ html, body {
   font-size: 16px;
   cursor: pointer;
   z-index: 10;
+}
+
+#Name {
+  margin: 5px 30px 0 0px;
+      width: unset;
+}
+
+#Measure1Time {
+  margin: 5px 30px 0 0px;
+      width: unset;
+}
+
+#Measure1Value {
+  margin: 5px 30px 0 0px;
+      width: unset;
+}
+#Measure2Time {
+  margin: 5px 30px 0 0px;
+      width: unset;
+}
+#Measure2Value {
+  margin: 5px 30px 0 0px;
+      width: unset;
+}
+#Measure3Time {
+  margin: 5px 30px 0 0px;
+      width: unset;
+}
+#Measure3Value {
+  margin: 5px 30px 0 0px;
+      width: unset;
+}
+#Measure4Time {
+  margin: 5px 30px 0 0px;
+      width: unset;
+}
+#Measure4Value {
+  margin: 5px 30px 0 0px;
+      width: unset;
+}
+
+.form-group label {
+  width: 200px;
+  height: 40px;
+  margin: 2px;
+  /* background-color: orange; */
+  padding-top: 9px;
+}
+
+.form-time {
+  font-family: 'Oxygen', sans-serif;
+  /* background-color: red; */
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: initial;
+
+}
+
+.buttonSubmit {
+  background-color: orangered; /* Green */
+
+  border: none;
+  color: white;
+  width: 100px;
+  height: 50px;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 10;
+
 }

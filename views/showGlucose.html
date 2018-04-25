@@ -42,61 +42,66 @@ crossorigin="anonymous"></script>
 
 
               <!-- THIS IS WHERE MY INFO GOES ON SUBMIT (CREATE TEMP) -->
-              <form action="/create-temp" method="POST" id = "form">
+              <!-- <form action="" id=""> -->
+
+              <form action="/create-temp" id="formToSend" method="post">
 
                 <div class="form-group">
                   <label for="name">Name</label>
-                  <input type="text" name="Name" placeholder="enter name" class="form-control" id="name" required>
+                  <input type="text" name="Name" placeholder="enter name" class="form-control" id= "Name" required>
                 </div>
 
+                <div class="form-time"> Morning </div>
+
+
                 <div class="form-group">
-                  <label for="time1">1 Measurement Time</label>
+                  <label for="time1">Time</label>
                   <input type="text" name="Measure1Time" placeholder="Enter Time hh:mm" class="form-control" id="Measure1Time" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="val1">1 Measurement Value</label>
+                  <label for="val1">Value</label>
                   <input type="text" name="Measure1Value" placeholder="Enter Value" class="form-control" id="Measure1Value" required>
                 </div>
 
                 <br>
-
+                <div class="form-time"> Lunch: Before </div>
                 <div class="form-group">
-                  <label for="time2">2 Measurement Time</label>
-                  <input type="text" name="Measure2Time" placeholder="Enter time" class="form-control" id="tags" required>
+                  <label for="time2">Time</label>
+                  <input type="text" name="Measure2Time" placeholder="Enter time" class="form-control" id="Measure2Time" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="val2">2 Measurement Val</label>
-                  <input type="text" name="Measure2Value" placeholder="Enter Value" class="form-control" id="weight" required>
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                  <label for="time3">3 Measurement Time </label>
-                  <input type="text" name="Measure3Time" placeholder="Enter Time" class="form-control" id="color" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="val3">3 Measurement Val</label>
-                  <input type="text" name="Measure3Value" placeholder="Enter Value" class="form-control" id="color" required>
+                  <label for="val2">Value</label>
+                  <input type="text" name="Measure2Value" placeholder="Enter Value" class="form-control" id="Measure2Value" required>
                 </div>
 
                 <br>
-
+                <div class="form-time"> Lunch: After </div>
                 <div class="form-group">
-                  <label for="color">4 Measurement Time </label>
-                  <input type="text" name="Measure4Time" placeholder="Enter Time" class="form-control" id="color" required>
+                  <label for="time3">Time </label>
+                  <input type="text" name="Measure3Time" placeholder="Enter Time" class="form-control" id="Measure3Time" required>
                 </div>
 
                 <div class="form-group">
-                  <label for="color">4 Measurement Val</label>
-                  <input type="text" name="Measure4Value" placeholder="Enter Value" class="form-control" id="color" required>
+                  <label for="val3">Value</label>
+                  <input type="text" name="Measure3Value" placeholder="Enter Value" class="form-control" id="Measure3Value" required>
+                </div>
+
+                <br>
+                <div class="form-time"> Bedtime </div>
+                <div class="form-group">
+                  <label for="color">Time </label>
+                  <input type="text" name="Measure4Time" placeholder="Enter Time" class="form-control" id="Measure4Time" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="color">Value</label>
+                  <input type="text" name="Measure4Value" placeholder="Enter Value" class="form-control" id="Measure4Value" required>
                 </div>
 
 
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="buttonSubmit">Submit</button>
               </form>
 
 

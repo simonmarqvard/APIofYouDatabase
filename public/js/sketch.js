@@ -4,9 +4,7 @@ var open = false;
 
 function initialize() {
   getData();
-
-
-
+  // submitting();
 
 
   $(".menu").click(function() {
@@ -16,13 +14,21 @@ function initialize() {
 
 
   function controlPanel() {
+
+    ///////////// OPEN AND CLOSE CONTROLPANEL /////////////////
     if (open == true) {
       $(".inputBox").animate({
-        height: "100%",
-        width: "400px"
+        height: "800px",
+        width: "400px",
+        marginTop: "3%",
+        marginLeft: "40%",
       }, 1000)
 
       $(".menu").animate({
+        width: "400px"
+      }, 1000)
+
+      $(".buttonSubmit").animate({
         width: "400px"
       }, 1000)
 
@@ -32,7 +38,10 @@ function initialize() {
     } else {
       $(".inputBox").animate({
         height: "50px",
-        width: "50px",
+        width: "100px",
+        marginTop: "0px",
+        marginLeft: "0px"
+
       }, 1000)
       $(".glucoseSchema").css("visibility", "hidden")
       $(".menu").animate({
@@ -42,6 +51,11 @@ function initialize() {
     }
   }
 }
+
+
+
+///////////////////////////OVERLAY DAYS///////////////////
+
 
 
 
@@ -89,8 +103,11 @@ function addDayMeasurement(day) {
     dayHtml += timeslot;
   });
 
+  var changeDate = new Date(day["dateAdded"])
+  var readableDate = changeDate.toISOString().split('T')[0]
+
   dayHtml +=
-    '<div class="datebox">' + day["dateAdded"] + '</div>'
+    '<div class="datebox">' + readableDate + '</div>'
   // +
   // +
   // '</div>';
@@ -135,26 +152,10 @@ function buildDoughnutChart(day) {
         },
       ]
     };
-    // var data = {
-    //   labels: [
-    //     "Hillary Clinton",
-    //     "Donald Trump",
-    //   ],
-    //   datasets: [{
-    //     data: [measurement["measurement_mgdl"], GlobalChartReferenceValues[i]],
-    //     backgroundColor: [
-    //       "#179ee0",
-    //       "#fff",
-    //     ],
-    //     hoverBackgroundColor: [
-    //       "#1594d2",
-    //       "#f0563a",
-    //     ]
-    //   }]
-    // };
+
 
     counter2++
-    console.log(counter)
+    // console.log(counter)
     var options = {
       legend: {
         display: false,
@@ -168,13 +169,11 @@ function buildDoughnutChart(day) {
       },
       animation: {
         animateScale: false,
-        duration: 7000
+        duration: 2000
       },
       //
       // rotation: counter2 * Math.PI
     }
-
-
     var ctx = document.getElementById("myChart" + counter2).getContext("2d");
     // now, create the doughnut chart, passing in:
     // 1. the type (required)
@@ -186,12 +185,86 @@ function buildDoughnutChart(day) {
       options: options,
     });
   });
-  console.log(counter)
+  // console.log(counter)
 }
 
 
 
+//HERE IS THE PROBLEM - I WANT TO SEND DATA WITH AJAX CALL INSTEAD OF
+//REDIRECTING WHOLE PAGE
 
+//HAS SOMETHING TO DO WITH FORM- ACTION?
+//OR THIS CALL?
+
+
+// $(document).ready(function() {
+
+function submitting() {
+
+  $("#formToSend").submit(function(e) {
+    console.log('submitting form');
+    // first, let's pull out all the values
+    // the name form field value
+    var name = $("#Name").val();
+    var morningtime = $("#Measure1Time").val();
+    var morningvalue = $("#Measure1Value").val();
+    var prelunchtime = $("#Measure2Time").val();
+    var prelunchvalue = $("#Measure2Value").val();
+    var postlunchtime = $("#Measure3Time").val();
+    var postlunchvalue = $("#Measure3Value").val();
+    var bedtime = $("#Measure4Time").val();
+    var bedvalue = $("#Measure4Value").val();
+
+    console.log(name);
+    console.log(morningtime);
+
+    return false;
+    // make sure we have a info
+    if (!morningtime || morningtime == "") return alert('We dont have enough data!');
+    console.log("do stuff")
+
+    // POST the data from above to our API create route
+    $.ajax({
+      url: '/create-temp',
+      dataType: 'json',
+      type: 'POST',
+      // we send the data in a data object (with key/value pairs)
+      data: {
+        name: name,
+        morningtime: morningtime,
+        morningtime: morningtime,
+        prelunchtime: prelunchtime,
+        prelunchvalue: prelunchvalue,
+        postlunchtime: postlunchtime,
+        postlunchvalue: postlunchvalue,
+        bedtime: bedtime,
+        bedvalue: bedvalue
+      },
+      success: function(response) {
+        if (response.status == "OK") {
+          // success
+          console.log(response);
+          // re-render the map
+          getData();
+          // now, clear the input fields
+          $("#form input").val('');
+        } else {
+          alert("something went wrong");
+        }
+      },
+      error: function(err) {
+        // do error checking
+        alert("something went wrong");
+        console.error(err);
+      }
+    });
+
+    // prevents the form from submitting normally
+    e.preventDefault();
+    return false;
+  });
+
+}
 
 
 
