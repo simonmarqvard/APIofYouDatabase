@@ -34,18 +34,18 @@ router.get('/displayData', function(req, res) {
 router.post('/create-temp', function(req, res) {
   console.log(req.body)
 
-  var name = req.body.Name
-  var morningtime = req.body.Measure1Time
-  var morningvalue = req.body.Measure1Value
-  var prelunchtime = req.body.Measure2Time
-  var prelunchvalue = req.body.Measure2Value
-  var postlunchtime = req.body.Measure3Time
-  var postlunchvalue = req.body.Measure3Value
-  var bedtime = req.body.Measure4Time
-  var bedvalue = req.body.Measure4Value
+  var name = req.body.name
+  var morningtime = req.body.morningtime
+  var morningvalue = req.body.morningvalue
+  var prelunchtime = req.body.prelunchtime
+  var prelunchvalue = req.body.prelunchvalue
+  var postlunchtime = req.body.postlunchtime
+  var postlunchvalue = req.body.postlunchvalue
+  var bedtime = req.body.bedtime
+  var bedvalue = req.body.bedvalue
 
   console.log(postlunchtime)
-  console.log("simon" + "simon" + postlunchtime)
+
 
 
   var dataCollection = {
@@ -96,7 +96,7 @@ router.post('/create-temp', function(req, res) {
 
     // redirect to page where you can see the new uploaded data
     // by referring to route called showDBdata
-    return res.redirect('/displayData')
+    return res.send(jsonData)
 
     //show data file being uploaded to database
     // return res.json(jsonData)

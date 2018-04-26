@@ -4,60 +4,11 @@ var open = false;
 
 function initialize() {
   getData();
-  // submitting();
-
-
-  $(".menu").click(function() {
-    open = !open
-    controlPanel()
-  })
-
-
-  function controlPanel() {
-
-    ///////////// OPEN AND CLOSE CONTROLPANEL /////////////////
-    if (open == true) {
-      $(".inputBox").animate({
-        height: "800px",
-        width: "400px",
-        marginTop: "3%",
-        marginLeft: "40%",
-      }, 1000)
-
-      $(".menu").animate({
-        width: "400px"
-      }, 1000)
-
-      $(".buttonSubmit").animate({
-        width: "400px"
-      }, 1000)
-
-      $(".menu").text("CLOSE")
-
-      $(".glucoseSchema").css("visibility", "visible")
-    } else {
-      $(".inputBox").animate({
-        height: "50px",
-        width: "100px",
-        marginTop: "0px",
-        marginLeft: "0px"
-
-      }, 1000)
-      $(".glucoseSchema").css("visibility", "hidden")
-      $(".menu").animate({
-        width: "100"
-      }, 1000)
-      $(".menu").text("OPEN")
-    }
-  }
 }
 
 
-
+var start = true
 ///////////////////////////OVERLAY DAYS///////////////////
-
-
-
 
 function getData() {
   $.ajax({
@@ -69,13 +20,18 @@ function getData() {
     success: function(data) {
       // window.data = data;
       console.log("data is served");
-      //  console.log(data)
       data = data.data
-      data.forEach(function(day) {
-        //    console.log(day)
-        //    console.log(day.state)
-        addDayMeasurement(day);
-      })
+      if (start) {
+        data.forEach(function(day) {
+          addDayMeasurement(day)
+          start = false;
+          console.log("alldays    ", day)
+        })
+      } else {
+        day = data[data.length - 1] //lastDay = data[n]
+        addDayMeasurement(day)
+        console.log("oneday    ", day)
+      }
     }
   })
 }
@@ -114,6 +70,7 @@ function addDayMeasurement(day) {
 
   $('.days').append(dayHtml);
   buildDoughnutChart(day);
+
 }
 
 
@@ -140,8 +97,7 @@ function buildDoughnutChart(day) {
       datasets: [{
           data: [state["measurement"], GlobalChartReferenceValues[i]],
           backgroundColor: ['#00AAA9', '#FCF4D9'],
-          borderColor: ['white', '#FCF4D9'],
-
+          borderColor: ['white', '#FCF4D9']
           //  hoverBackgroundColor: [red, red],
         },
         {
@@ -163,9 +119,12 @@ function buildDoughnutChart(day) {
         labels: {
           fontColor: '00AAA0'
         },
+        hover: {
+          mode: null
+        },
       },
       tooltips: {
-        backgroundColor: '#222',
+        enabled: true,
       },
       animation: {
         animateScale: false,
@@ -197,9 +156,52 @@ function buildDoughnutChart(day) {
 //OR THIS CALL?
 
 
-// $(document).ready(function() {
+$(document).ready(function() {
 
-function submitting() {
+
+  $(".menu").click(function() {
+    open = !open
+    controlPanel()
+  })
+
+
+  function controlPanel() {
+    ///////////// OPEN AND CLOSE CONTROLPANEL /////////////////
+    if (open == true) {
+      $(".inputBox").animate({
+        height: "800px",
+        width: "400px",
+        marginTop: "3%",
+        marginLeft: "40%",
+      }, 800)
+
+      $(".menu").animate({
+        width: "400px"
+      }, 800)
+
+      $(".buttonSubmit").animate({
+        width: "400px"
+      }, 800)
+
+      $(".menu").text("CLOSE")
+
+      $(".glucoseSchema").css("visibility", "visible")
+    } else {
+      $(".inputBox").animate({
+        height: "50px",
+        width: "100px",
+        marginTop: "0px",
+        marginLeft: "0px"
+
+      }, 500)
+      $(".glucoseSchema").css("visibility", "hidden")
+      $(".menu").animate({
+        width: "100"
+      }, 500)
+      $(".menu").text("OPEN")
+    }
+  }
+
 
   $("#formToSend").submit(function(e) {
     console.log('submitting form');
@@ -215,12 +217,8 @@ function submitting() {
     var bedtime = $("#Measure4Time").val();
     var bedvalue = $("#Measure4Value").val();
 
-    console.log(name);
-    console.log(morningtime);
-
-    return false;
-    // make sure we have a info
-    if (!morningtime || morningtime == "") return alert('We dont have enough data!');
+    //When there is nothing ins
+    // if (!morningtime || morningtime == "") return alert('We dont have enough data!');
     console.log("do stuff")
 
     // POST the data from above to our API create route
@@ -232,7 +230,7 @@ function submitting() {
       data: {
         name: name,
         morningtime: morningtime,
-        morningtime: morningtime,
+        morningvalue: morningvalue,
         prelunchtime: prelunchtime,
         prelunchvalue: prelunchvalue,
         postlunchtime: postlunchtime,
@@ -244,12 +242,12 @@ function submitting() {
         if (response.status == "OK") {
           // success
           console.log(response);
-          // re-render the map
+          //When new data is coming in - run Getdata (creates a day with graphs and appends it)
           getData();
           // now, clear the input fields
-          $("#form input").val('');
+          $("#formToSend input").val('');
         } else {
-          alert("something went wrong");
+          alert("SOMEEEEEETHING went wrong");
         }
       },
       error: function(err) {
@@ -263,82 +261,17 @@ function submitting() {
     e.preventDefault();
     return false;
   });
+})
 
-}
-
+//NOTE: NOTE: NOTE:
+// A new way to create multistring ${   } is an input no plusses needed
+// var timeslot = `
+//   foo ${state["type"]} bar
+//   <div class="${state["type"]}">
+//     <div class="description">
+//     ...
+// `;
 
 
 // NOTE: THIS IS FROM WHEN I HAD A REFERENCE CHART IN THE FIRST Column
 // NOTE: BEFORE I MADE IT MULTIDOUGHNUT CHARTS
-
-// ReferenceChart
-
-// function referenceChart() {
-//   //the real values for reference chart
-//   var refvalues = [100, 110, 140, 110];
-//
-//   for (var i = 0; i <= 3; i++) {
-//     var values = refvalues[i];
-//     var chartReferenceValues = GlobalChartReferenceValues[i]
-//
-//     // var data = {
-//     //   labels: [
-//     //     "Ref-Value",
-//     //     "extra",
-//     //   ],
-//     //   datasets: [{
-//     //     data: [values, chartReferenceValues],
-//     //     backgroundColor: [
-//     //       "red",
-//     //       "white",
-//     //     ],
-//     //     hoverBackgroundColor: [
-//     //       "#1594d2",
-//     //       "#f0563a",
-//     //     ]
-//     //   }]
-//     // };
-//
-//     var data = {
-//       datasets: [{
-//           data: [values, chartReferenceValues],
-//           backgroundColor: ['red', 'blue'],
-//           //  hoverBackgroundColor: [red, red],
-//         },
-//         {
-//           data: [60, 40],
-//           backgroundColor: ['green', 'orange'],
-//           //    hoverBackgroundColor: [blue, blue],
-//         },
-//       ]
-//     };
-//
-//     var options = {
-//       legend: {
-//         display: false,
-//         position: 'bottom',
-//         labels: {
-//           fontColor: '#fff'
-//         },
-//       },
-//       tooltips: {
-//         backgroundColor: '#222',
-//       },
-//       animation: {
-//         animateScale: false,
-//         duration: 5000
-//       },
-//     }
-//     // first, get the context of the canvas where we're drawing the chart
-//     var xpos = document.getElementById("my" + [i] + "Chart").getContext("2d");
-//     // now, create the doughnut chart, passing in:
-//     // 1. the type (required)
-//     // 2. the data (required)
-//     // 3. chart options (optional)
-//     myDoughnutChart = new Chart(xpos, {
-//       type: 'doughnut',
-//       data: data,
-//       options: options
-//     });
-//   }
-// }
